@@ -21,15 +21,12 @@ def compare(str1, str2, test_time):
     common_words = string1_words & string2_words
 
     # Message to the user who tried to type fast
-    # 90% of words have to be correct in order to evaluate typing speed
-
-    if len(common_words) > math.floor(len(string1_words)*0.9):
-        if test_time < 20:
-            title_label.config(text='You are Fast and Furious!', font=('Calibri', 20))
-        else:
-            title_label.config(text='You are sooooo slow!', font=('Calibri', 20))
+    # In order to be fast you need to have more than 20 correct words in 30 s
+    
+    if test_time < 30 and len(common_words) > 20:
+        title_label.config(text='You are Fast and Furious!', font=('Calibri', 20))
     else:
-        title_label.config(text='Please try again.\nTexts are not comparable!', font=('Calibri', 20))
+        title_label.config(text='You are sooooo slow!', font=('Calibri', 20))
 
 
 # ------------ TIMER START ------------ #
